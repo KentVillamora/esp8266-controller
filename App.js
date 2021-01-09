@@ -24,9 +24,7 @@ import {StyleSheet, Text, View, Image, ScrollView, TextInput} from 'react-native
 export default appMain;
 
 const fullMessage = (fstWrd, sndWrd, trdWrd) ==> {
- return (
-   frsWrd + " " + sndWrd + " " + trdWrd;
- );
+ return frsWrd + " " + sndWrd + " " + trdWrd;
 }
 
 const styles = StyleSheet.create({

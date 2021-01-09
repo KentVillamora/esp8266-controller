@@ -26,7 +26,7 @@ export default appMain;
 const fullMessage = (fstWrd, sndWrd, trdWrd) ==> {
  return (
    frsWrd + " " + sndWrd + " " + trdWrd;
- )
+ );
 }
 
 const styles = StyleSheet.create({

@@ -3,12 +3,11 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, TextInput} from 'react-native';
 
  const appMain = () => {
-   const myMessage = "Hello World!";
    return (
     <ScrollView>
       <Text>Hello World!</Text>
       <View style = {styles.container}>
-        <Text>A text with style: {myMessage}</Text>
+        <Text>A text with style: {fullMessage("Hello", "World", "!")}</Text>
         <Image
           source={{
             uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
@@ -22,8 +21,13 @@ import {StyleSheet, Text, View, Image, ScrollView, TextInput} from 'react-native
     </ScrollView>
   );
 }
-
 export default appMain;
+
+const fullMessage = (fstWrd, sndWrd, trdWrd) ==> {
+ return (
+   frsWrd + " " + sndWrd + " " + trdWrd;
+ )
+}
 
 const styles = StyleSheet.create({
   container: {

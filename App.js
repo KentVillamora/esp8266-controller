@@ -23,7 +23,7 @@ import {StyleSheet, Text, View, Image, ScrollView, TextInput} from 'react-native
 }
 export default appMain;
 
-const fullMessage = (fstWrd, sndWrd, trdWrd) ==> {
+const fullMessage = (fstWrd, sndWrd, trdWrd) => {
  return fstWrd + " " + sndWrd + " " + trdWrd;
 }
 

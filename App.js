@@ -4,10 +4,10 @@ import {StyleSheet, Text, View, Image, ScrollView, TextInput} from 'react-native
 
 export default function App() {
   return (
-    <ScrollView style = {styles.container}>
+    <ScrollView>
       <Text>Hello World!</Text>
-      <View>
-        
+      <View style = {styles.container}>
+        <Text>A text with style</Text>
       </View>
     </ScrollView>
   );

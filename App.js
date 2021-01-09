@@ -15,6 +15,9 @@ export default function App() {
           style={{ width: 200, height: 200 }}
         />
       </View>
+      <TextInput style = {styles.inputTextt}
+        defaultValue="Enter your name here"
+      />
     </ScrollView>
   );
 }
@@ -26,4 +29,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  inputText: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1
+  }
 });

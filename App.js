@@ -2,8 +2,8 @@ import {StatusBar} from 'expo-status-bar';
 import React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, TextInput} from 'react-native';
 
-export default function App() {
-  return (
+ const appMain = () => {
+   return (
     <ScrollView>
       <Text>Hello World!</Text>
       <View style = {styles.container}>
@@ -21,6 +21,8 @@ export default function App() {
     </ScrollView>
   );
 }
+
+export default appMain;
 
 const styles = StyleSheet.create({
   container: {

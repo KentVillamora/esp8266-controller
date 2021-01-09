@@ -3,11 +3,12 @@ import React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, TextInput} from 'react-native';
 
  const appMain = () => {
+   const myMessage = "Hello World!";
    return (
     <ScrollView>
       <Text>Hello World!</Text>
       <View style = {styles.container}>
-        <Text>A text with style</Text>
+        <Text>A text with style: {myMessage}</Text>
         <Image
           source={{
             uri: 'https://reactnative.dev/docs/assets/p_cat2.png',

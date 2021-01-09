@@ -15,7 +15,7 @@ export default function App() {
           style={{ width: 200, height: 200 }}
         />
       </View>
-      <TextInput style = {styles.inputTextt}
+      <TextInput style = {styles.inputText}
         defaultValue="Enter your name here"
       />
     </ScrollView>

@@ -25,7 +25,7 @@ export default appMain;
 
 const fullMessage = (fstWrd, sndWrd, trdWrd) => {
  return (
-  fullMessage = fstWrd + " " + sndWrd + " " + trdWrd
+  fstWrd + " " + sndWrd + " " + trdWrd
  );
 }
 

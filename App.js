@@ -12,7 +12,6 @@ const greetMsg = (props) => {
 const appMain = () => {
   return (
     <View>
-      //<Text>Hello World!</Text>
       <greetMsg name="Kent"/>
     </View>
   );

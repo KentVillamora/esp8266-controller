@@ -12,7 +12,7 @@ const greetMsg = (props) => {
 const appMain = () => {
   return (
     <View>
-      <greetMsg name="Kent"/>
+      <greetMsg name="Kent" />
     </View>
   );
 }

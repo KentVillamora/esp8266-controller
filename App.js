@@ -3,18 +3,16 @@ import {Text, View} from 'react-native';
 
 const GreetMsg = (props) => {
   return (
-    <View>
-      <Text>Hello, I am {props.name}</Text>
-    </View>
+    <Text>Hi, I'm {props.name}</Text>
   );
 }
 
-const Cafe = () => {
+const appMain = () => {
   return (
     <View>
-      <GreetMsg name="Maru" />
+     <GreetMsg name="Kent"/>
     </View>
   );
 }
 
-export default Cafe;
+export default appMain;

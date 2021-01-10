@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const greetMsg = (props) => {
+const Cat = (props) => {
   return (
     <View>
       <Text>Hello, I am {props.name}</Text>
@@ -12,7 +12,7 @@ const greetMsg = (props) => {
 const Cafe = () => {
   return (
     <View>
-      <greetMsg name="Maru" />
+      <Cat name="Maru" />
     </View>
   );
 }

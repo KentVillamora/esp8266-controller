@@ -15,3 +15,5 @@ const appMain = () => {
     </View>
   );
 }
+
+export defaul appMain;

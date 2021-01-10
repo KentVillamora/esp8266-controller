@@ -13,8 +13,6 @@ const Cafe = () => {
   return (
     <View>
       <Cat name="Maru" />
-      <Cat name="Jellylorum" />
-      <Cat name="Spot" />
     </View>
   );
 }

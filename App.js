@@ -3,7 +3,9 @@ import {Text, View} from 'react-native';
 
 const greetMsg = () => {
  return(
-  <Text>Hi, I am {props.name}</Text>
+  <View>
+   <Text>Hi, I am {props.name}</Text>
+  </View>
  );
 }
 

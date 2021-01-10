@@ -1,22 +1,17 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 
-const Cat = (props) => {
+const greetMsg = (props) => {
   return (
-    <View>
-      <Text>Hello, I am {props.name}!</Text>
-    </View>
+    <Text>Hi, I'm {props.name}</Text>
   );
 }
 
-const Cafe = () => {
+const appMain = () => {
   return (
     <View>
-      <Cat name="Maru" />
-      <Cat name="Jellylorum" />
-      <Cat name="Spot" />
+      <Text>Hello World!</Text>
+      <greetMsg name="Kent"/>
     </View>
   );
 }
-
-export default Cafe;

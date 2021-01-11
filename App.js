@@ -13,9 +13,11 @@ const appMain = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={() => {setClickCount((current) => current + 1);}}>
-        <Text style={styles.text}>Click me!</Text>
-      </Pressable>
+      <View>
+        <Pressable onPress={() => {setClickCount((current) => current + 1);}}>
+          <Text style={styles.text}>Click me!</Text>
+        </Pressable>
+      </View>
       <View style={styles.logBox}>
         <Text testID="pressable_press_console">{textLog}</Text>
       </View>

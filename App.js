@@ -6,14 +6,19 @@ const SteerWheel = () => {
     <View style={styles.placement}>
       <View style={styles.handRing}/>
       <View style={styles.handSpoke}/>
-      <Pressable onPress={onPressFunction}>
-        <Text>I'm pressable!</Text>
-      </Pressable>
     </View>
   );
 }
 
-export default SteerWheel;
+const MyPressable = () => {
+  return (
+    <Pressable onPress={onPressFunction}>
+      <Text>I'm pressable!</Text>
+    </Pressable>
+  );
+}
+
+export default MyPressable;
 
 const styles = StyleSheet.create({
   placement: {

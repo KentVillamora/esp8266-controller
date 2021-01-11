@@ -14,10 +14,7 @@ const SteerWheel = () => {
   return (
     <View style={styles.placement}>
       <Pressable onPress={()=>{setClickCount((current)=>current+1);}}>
-        <>
-        <View style={styles.handRing}/>
-        <View style={styles.handSpoke}/>
-        </>
+        <Text>Press me!</Text>
       </Pressable>
       <View style={styles.logBox}>
         <Text testID="pressable_press_console">{textLog}</Text>

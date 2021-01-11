@@ -8,3 +8,4 @@ const appMain=()=>{
     </View>
   );
 }
+export default appMain;

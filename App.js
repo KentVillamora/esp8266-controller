@@ -11,7 +11,9 @@ const styles = StyleSheet.create({
   circle: {
     width: 100,
     height: 100,
-    borderRadius: 100 / 2,
-    backgroundColor: "red",
+    borderRadius: 50,
+    borderWidth: 15,
+    backgroundColor: "white",
+    borderColor: "red",
   },
 });

@@ -1,57 +1,62 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Pressable} from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-const SteerWheel = () => {
-  const [clickCount, setClickCount] = useState(0);
-  
+const App = () => {
+  const [timesPressed, setTimesPressed] = useState(0);
+
   let textLog = '';
-  if (clickCount > 1) {
-    textLog = clickCount + ' cilcks';
-  } else {
-    textLog = '0 clicks';
+  if (timesPressed > 1) {
+    textLog = timesPressed + 'x onPress';
+  } else if (timesPressed > 0) {
+    textLog = 'onPress';
   }
-  
+
   return (
-    <View style={styles.placement}>
-      <Pressable onPress={()=>{setClickCount((current)=>current+1);}}>
-        <Text>Press me!</Text>
+    <View style={styles.container}>
+      <Pressable
+        onPress={() => {
+          setTimesPressed((current) => current + 1);
+        }}
+        style={({ pressed }) => [
+          {
+            backgroundColor: pressed
+              ? 'rgb(210, 230, 255)'
+              : 'white'
+          },
+          styles.wrapperCustom
+        ]}>
+        {({ pressed }) => (
+          <Text style={styles.text}>
+            {pressed ? 'Pressed!' : 'Press Me'}
+          </Text>
+        )}
       </Pressable>
       <View style={styles.logBox}>
         <Text testID="pressable_press_console">{textLog}</Text>
       </View>
     </View>
   );
-}
-
-export default SteerWheel;
+};
 
 const styles = StyleSheet.create({
-  placement: {
-    position: "absolute",
-    left: 50,
-    top: 30,
+  container: {
+    flex: 1,
+    justifyContent: "center",
   },
-  handRing: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    borderWidth: 10,
-    borderColor: "black",
+  text: {
+    fontSize: 16
   },
-  handSpoke: {
-    width: 100,
-    height: 20,
-    borderRadius: 10,
-    backgroundColor: "black",
-    position: "absolute",
-    left: 0,
-    top: 40,
+  wrapperCustom: {
+    borderRadius: 8,
+    padding: 6
   },
   logBox: {
     padding: 20,
     margin: 10,
-    borderWidth: 5,
+    borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#f0f0f0',
     backgroundColor: '#f9f9f9'
-  },
+  }
 });
+
+export default App;

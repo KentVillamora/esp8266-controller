@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
   },
   handSpoke: {
     width: 100,
-    height: 30,
+    height: 20,
     backgroundColor: "red",
     position: "absolute",
     left: 0,
-    top: 35,
+    top: 40,
   },
 });

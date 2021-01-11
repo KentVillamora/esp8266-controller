@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 
-const App = () => {
+const appMain = () => {
   const [clickCount, setClickCount] = useState(0);
 
   let textLog = '';
@@ -13,23 +13,8 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable
-        onPress={() => {
-          setClickCount((current) => current + 1);
-        }}
-        style={({ pressed }) => [
-          {
-            backgroundColor: pressed
-              ? 'rgb(210, 230, 255)'
-              : 'white'
-          },
-          styles.wrapperCustom
-        ]}>
-        {({ pressed }) => (
-          <Text style={styles.text}>
-            {pressed ? 'Pressed!' : 'Press Me'}
-          </Text>
-        )}
+      <Pressable onPress={() => {setClickCount((current) => current + 1);}}>
+        <Text style={styles.text}>Click me!</Text>
       </Pressable>
       <View style={styles.logBox}>
         <Text testID="pressable_press_console">{textLog}</Text>
@@ -37,6 +22,7 @@ const App = () => {
     </View>
   );
 };
+export default appMain;
 
 const styles = StyleSheet.create({
   container: {
@@ -46,10 +32,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16
   },
-  wrapperCustom: {
-    borderRadius: 8,
-    padding: 6
-  },
   logBox: {
     padding: 20,
     margin: 10,
@@ -58,5 +40,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9f9'
   }
 });
-
-export default App;

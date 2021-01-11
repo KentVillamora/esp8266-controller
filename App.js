@@ -13,7 +13,7 @@ const appMain = () => {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={styles.circle}>
         <Pressable onPress={() => {setClickCount((current) => current + 1);}}>
           <Text style={styles.text}>Click me!</Text>
         </Pressable>
@@ -40,5 +40,11 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "black",
     backgroundColor: "red",
-  }
+  },
+  circle: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "red",
+  },
 });

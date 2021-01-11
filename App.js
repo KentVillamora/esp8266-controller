@@ -12,9 +12,11 @@ const SteerWheel = () => {
 
 const MyPressable = () => {
   return (
-    <Pressable onPress={onPressFunction}>
-      <Text>I'm pressable!</Text>
-    </Pressable>
+    <View>
+      <Pressable onPress={onPressFunction}>
+        <Text>I'm pressable!</Text>
+      </Pressable>
+    </View>
   );
 }
 

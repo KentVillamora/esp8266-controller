@@ -1,26 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Pressable} from 'react-native';
 
 const SteerWheel = () => {
+  const [clickCount, setClickCount] = useState(0);
+  
   return (
     <View style={styles.placement}>
-      <View style={styles.handRing}/>
-      <View style={styles.handSpoke}/>
-    </View>
-  );
-}
-
-const MyPressable = () => {
-  return (
-    <View>
-      <Pressable onPress={onPressFunction}>
-        <Text>I'm pressable!</Text>
+      <Pressable onPress={()=>{setClickCount((current)=>current+1);}}>
+        <>
+        <View style={styles.handRing}/>
+        <View style={styles.handSpoke}/>
+        </>
       </Pressable>
+      <View style={styles.logBox}>
+        <Text testID="pressable_press_console">Number of clicks: {clickCount}</Text>
+      </View>
     </View>
   );
 }
 
-export default MyPressable;
+export default SteerWheel;
 
 const styles = StyleSheet.create({
   placement: {
@@ -43,5 +42,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     top: 40,
+  },
+  logBox: {
+    padding: 20,
+    margin: 10,
+    borderWidth: 5,
+    borderColor: '#f0f0f0',
+    backgroundColor: '#f9f9f9'
   },
 });

@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 const App = () => {
-  const [timesPressed, setTimesPressed] = useState(0);
+  const [clickCount, setClickCount] = useState(0);
 
   let textLog = '';
-  if (timesPressed > 1) {
-    textLog = timesPressed + 'x onPress';
-  } else if (timesPressed > 0) {
-    textLog = 'onPress';
+  if (clickCount > 0) {
+    textLog = clickCount + ' clicks';
+  } else {
+    textLog = '0 clicks';
   }
 
   return (
     <View style={styles.container}>
       <Pressable
         onPress={() => {
-          setTimesPressed((current) => current + 1);
+          setClickCount((current) => current + 1);
         }}
         style={({ pressed }) => [
           {

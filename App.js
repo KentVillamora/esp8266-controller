@@ -3,8 +3,10 @@ import {View, StyleSheet} from 'react-native';
 
 const SteerWheel = () => {
   return (
-    <View style={styles.handRing} />
-    <View style={styles.handSpoke} />
+    <View>
+      <View style={styles.handRing}/>
+      <View style={styles.handSpoke}/>
+    </View>
   );
 }
 

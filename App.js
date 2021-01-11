@@ -10,7 +10,7 @@ const SteerWheel = () => {
   );
 }
 
-export default Circle;
+export default SteerWheel;
 
 const styles = StyleSheet.create({
   handRing: {

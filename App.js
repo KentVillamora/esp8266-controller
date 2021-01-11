@@ -13,11 +13,11 @@ const appMain = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.circle}>
-        <Pressable onPress={() => {setClickCount((current) => current + 1);}}>
+      <Pressable
+        onPress={() => {setClickCount((current) => current + 1);}}
+        style={styles.circle}>
           <Text style={styles.text}>Click me!</Text>
         </Pressable>
-      </View>
       <View style={styles.logBox}>
         <Text testID="pressable_press_console">{textLog}</Text>
       </View>

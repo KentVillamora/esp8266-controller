@@ -32,7 +32,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   text: {
-    fontSize: 20
+    fontSize: 20,
+    position: "absolute",
+    top: 40,
+    justifyContent: "center",
   },
   logBox: {
     padding: 20,

@@ -6,8 +6,6 @@ const SteerWheel = () => {
     <View style={styles.placement}>
       <View style={styles.handRing}/>
       <View style={styles.handSpoke}/>
-    </View>
-    <View>
       <Pressable onPress={onPressFunction}>
         <Text>I'm pressable!</Text>
       </Pressable>

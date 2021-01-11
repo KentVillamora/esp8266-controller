@@ -7,7 +7,7 @@ const appMain = () => {
   return (
     <View>
       <Text>Press the button below</Text>
-      <View style={{width:100, height:50}}>
+      <View style={{width:200}}>
         <Button
           title={wasPressed ? "You already pressed the button" : "Still waiting for you to press the button"}
           onPress={()=>{setPressStatus(true)}}

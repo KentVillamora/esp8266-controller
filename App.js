@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 
 const SteerWheel = () => {
   return (
-    <View>
+    <View style={styles.placement}>
       <View style={styles.handRing}/>
       <View style={styles.handSpoke}/>
     </View>
@@ -13,6 +13,11 @@ const SteerWheel = () => {
 export default SteerWheel;
 
 const styles = StyleSheet.create({
+  placement: {
+    position: "absolute",
+    left: 10,
+    top: 10,
+  },
   handRing: {
     width: 100,
     height: 100,

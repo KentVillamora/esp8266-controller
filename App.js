@@ -15,8 +15,8 @@ export default SteerWheel;
 const styles = StyleSheet.create({
   placement: {
     position: "absolute",
-    left: 10,
-    top: 10,
+    left: 50,
+    top: 30,
   },
   handRing: {
     width: 100,

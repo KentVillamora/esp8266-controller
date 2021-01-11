@@ -1,184 +1,122 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { WebView } from "react-native-webview";
+import React, { Component } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import { MultiTouchView } from 'expo-multi-touch';
 
-const js = options => {
-  console.log("OPTIONS", options);
-  let string = `
-    setTimeout(() => {
-    var joystick = nipplejs.create({
-      zone: document.getElementById('zone_joystick'),
-      color: "${options.color}",
-      lockX: ${options.lockX},
-      lockY: ${options.lockY},
-      mode: '${options.mode}',
-      size: ${options.size},
-      position: {
-        left: "${options.position.left}",
-        top: "${options.position.top}"
-      }
-    });
-    joystick.on('start', function(evt, data) {
-      let dataToReturn = { type: "onStart", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('end', function(evt, data) {
-      let dataToReturn = { type: "onEnd", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('move', function(evt, data) {
-      let dataToReturn = { type: "onMove", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('dir', function(evt, data) {
-      let dataToReturn = { type: "onDir", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('dir:up', function(evt, data) {
-      let dataToReturn = { type: "onDirUp", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('dir:down', function(evt, data) {
-      let dataToReturn = { type: "onDirDown", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('dir:left', function(evt, data) {
-      let dataToReturn = { type: "onDirLeft", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('dir:right', function(evt, data) {
-      let dataToReturn = { type: "onDirRight", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('plain', function(evt, data) {
-      let dataToReturn = { type: "onPlane", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('plain:up', function(evt, data) {
-      let dataToReturn = { type: "onPlaneUp", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('plain:down', function(evt, data) {
-      let dataToReturn = { type: "onPlaneDown", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('plain:left', function(evt, data) {
-      let dataToReturn = { type: "onPlaneLeft", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    joystick.on('plain:right', function(evt, data) {
-      let dataToReturn = { type: "onPlaneRight", event: evt.type, data }
-      window.ReactNativeWebView.postMessage(JSON.stringify(dataToReturn));
-    })
-    }, 500)
-  `;
+const colors = ['red', 'blue', 'yellow', 'green', 'orange', 'cyan', 'plum', 'gray', 'purple'];
+export default class App extends Component {
+  state = {
+    touches: {},
+  };
 
-  return string;
-};
-
-export class RNGamePadSingle extends React.Component {
-  constructor() {
-    super();
-  }
-
-  invokeCallback(json) {
-    let { type, event, data } = JSON.parse(json);
-    if (this.props[type]) {
-      this.props[type](event, data);
-    }
-  }
+  touchProps = {
+    onTouchBegan: event => {
+      const { identifier } = event;
+      this.setState(previous => ({
+        touches: {
+          ...previous.touches,
+          [identifier]: event,
+        },
+      }));
+    },
+    onTouchMoved: event => {
+      const { identifier } = event;
+      this.setState(previous => ({
+        touches: {
+          ...previous.touches,
+          [identifier]: event,
+        },
+      }));
+    },
+    onTouchEnded: event => {
+      const { identifier, deltaX, deltaY, isTap } = event;
+      this.setState(previous => ({
+        touches: {
+          ...previous.touches,
+          [identifier]: null,
+        },
+      }));
+    },
+    onTouchCancelled: event => {
+      const { identifier, deltaX, deltaY, isTap } = event;
+      this.setState(previous => ({
+        touches: {
+          ...previous.touches,
+          [identifier]: null,
+        },
+      }));
+    },
+    onTouchesBegan: () => {
+      console.log('onTouchesBegan');
+    },
+    onTouchesMoved: () => {},
+    onTouchesEnded: () => {
+      console.log('onTouchesEnded');
+    },
+    onTouchesCancelled: () => {
+      console.log('onTouchesCancelled');
+    },
+  };
 
   render() {
-    let {
-      color = "green",
-      size = 200,
-      lockX = false,
-      lockY = false
-    } = this.props.options;
-    let {
-      onButtonBPress,
-      buttonAColor,
-      onButtonAPress,
-      buttonBColor
-    } = this.props;
-    console.log("PROPS", this.props);
-
-    var options = {
-      color: color,
-      mode: "static",
-      size,
-      position: {
-        left: "50%",
-        top: "50%"
-      },
-      lockX,
-      lockY
-    };
+    const { touches } = this.state;
     return (
-      <View style={{ flex: 1, flexDirection: "row" }}>
-        <View style={{ flex: 1 }}>
-          <WebView
-            source={require("./web/index.html")}
-            onMessage={evt => this.invokeCallback(evt.nativeEvent.data)}
-            injectedJavaScript={js(options)}
-          />
-        </View>
-        <View style={{ flex: 1, backgroundColor: "white" }}>
-          <View
-            style={{
-              flexDirection: "row",
-              height: "100%"
-            }}
-          >
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                marginLeft: 50
-              }}
-            >
-              <TouchableOpacity
-                style={[styles.button, { backgroundColor: `${buttonAColor}` }]}
-                onPress={() => onButtonAPress()}
-              >
-                <Text style={styles.buttonText}>A</Text>
-              </TouchableOpacity>
-            </View>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                marginRight: 50
-              }}
-            >
-              <TouchableOpacity
-                style={[styles.button, { backgroundColor: `${buttonBColor}` }]}
-                onPress={() => onButtonBPress()}
-              >
-                <Text style={styles.buttonText}>B</Text>
-              </TouchableOpacity>
-            </View>
+      <View style={{ flex: 1, backgroundColor: 'orange' }}>
+        <MultiTouchView style={{ flex: 1 }} {...this.touchProps}>
+          <View style={styles.container}>
+            <Text style={styles.paragraph}>Touch around...</Text>
+
+            {Object.values(touches).map((item, index) => {
+              if (!item) {
+                return null;
+              }
+              console.log(index, item.locationX);
+
+              return (
+                <View
+                  key={index}
+                  style={[
+                    styles.touch,
+                    {
+                      transform: [
+                        { translateX: -TOUCH_SIZE / 2 },
+                        { translateY: -TOUCH_SIZE / 2 },
+                        { scale: 1 + (item.force || 0) * 2 },
+                      ],
+                      backgroundColor: colors[index % colors.length],
+                      top: item.pageY,
+                      left: item.pageX,
+                    },
+                  ]}
+                />
+              );
+            })}
           </View>
-        </View>
+        </MultiTouchView>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  button: {
-    height: 90,
-    width: 90,
-    borderRadius: 90 / 2,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  buttonText: {
-    fontSize: 22,
-    color: "white",
-    fontWeight: "700"
-  }
-});
+const TOUCH_SIZE = 56;
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+  },
+  touch: {
+    position: 'absolute',
+    aspectRatio: 1,
+    width: TOUCH_SIZE,
+    borderRadius: TOUCH_SIZE / 2,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#34495e',
+  },
+});

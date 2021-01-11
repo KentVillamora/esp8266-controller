@@ -4,6 +4,13 @@ import {View, StyleSheet, Pressable} from 'react-native';
 const SteerWheel = () => {
   const [clickCount, setClickCount] = useState(0);
   
+  let textLog = '';
+  if (clickCount > 1) {
+    textLog = clickCount + ' cilcks';
+  } else {
+    textLog = '0 clicks';
+  }
+  
   return (
     <View style={styles.placement}>
       <Pressable onPress={()=>{setClickCount((current)=>current+1);}}>
@@ -13,7 +20,7 @@ const SteerWheel = () => {
         </>
       </Pressable>
       <View style={styles.logBox}>
-        <Text testID="pressable_press_console">Number of clicks: {clickCount}</Text>
+        <Text testID="pressable_press_console">{textLog}</Text>
       </View>
     </View>
   );

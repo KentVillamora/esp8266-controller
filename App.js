@@ -1,53 +1,30 @@
-import React, {useState} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react'
+import { Text, View,StyleSheet } from 'react-native'
+import  {PanGestureHandler} from 'react-native-gesture-handler'
 
-const appMain = () => {
-  const [clickCount, setClickCount] = useState(0);
-
-  let textLog = '';
-  if (clickCount > 0) {
-    textLog = clickCount + ' clicks';
-  } else {
-    textLog = '0 clicks';
-  }
-
-  return (
-    <View style={styles.container}>
-      <Pressable
-        onPress={() => {setClickCount((current) => current + 1);}}
-        style={styles.circle}>
-          <Text style={styles.text}>Click me!</Text>
-        </Pressable>
-      <View style={styles.logBox}>
-        <Text testID="pressable_press_console">{textLog}</Text>
-      </View>
-    </View>
-  );
-};
-export default appMain;
+export default class RnGestureHandler extends Component {
+    render() {
+        return (
+            <View style={styles.container}>
+               <View style={[styles.circle]} />
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    position: "absolute",
-    top: 40,
-    justifyContent: "center",
-  },
-  logBox: {
-    padding: 20,
-    margin: 10,
-    borderWidth: 5,
-    borderColor: "black",
-    backgroundColor: "red",
-  },
-  circle: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: "red",
-  },
-});
+    container: {
+      flex: 1,
+      justifyContent: "space-around",
+      flexDirection: "column",
+      backgroundColor: "#fff"
+    },
+
+    circle: {
+        width: 150,
+        height: 150,
+        backgroundColor: "#c00000",
+        borderRadius: 100
+      },
+  
+   })

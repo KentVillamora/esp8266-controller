@@ -1,76 +1,65 @@
-//On touch, draw a circle where the touch was detected
+import React, { useRef, useState } from 'react';
+import { View, Text, StyleSheet, Animated, PanResponder } from 'react-native';
 
-import React, { useRef } from 'react';
-import { Animated, View, StyleSheet, PanResponder, Text } from 'react-native';
+const MyComponent = () => {
+  const [borderColor, setBorderColor] = useState('white');
 
-export default function App() {
   const pan = useRef(new Animated.ValueXY()).current;
 
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
+      onStartShouldSetPanResponder: () => true,
       onPanResponderGrant: () => {
-        pan.setOffset({
-          x: pan.x._value,
-          y: pan.y._value,
-        });
+        setBorderColor('lightblue');
       },
       onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }]),
       onPanResponderRelease: () => {
-        pan.flattenOffset();
+        Animated.spring(pan, { toValue: { x: 0, y: 0 } }).start();
+        setBorderColor('white');
       },
     })
   ).current;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.steerArea}>
-        <View style={styles.steerWheel} />
-        <Animated.View style={pan.getLayout()} {...panResponder.panHandlers}>
-          <View style={styles.touchIndicator} />
-        </Animated.View>
+    <View style={MyStyle.mainView}>
+      <View style={MyStyle.steerArea}>
+        <Animated.View
+          {...panResponder.panHandlers}
+          style={[
+            {
+              height: 100,
+              width: 100,
+              backgroundColor: 'gray',
+              borderWidth: 10,
+              borderColor: borderColor,
+              borderRadius: 50,
+              top: pan.y,
+              left: pan.x,
+            },
+          ]}
+        />
       </View>
-      <Text style={styles.paragraph}>Steer Wheel</Text>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
+export default MyComponent;
+
+const MyStyle = StyleSheet.create({
+  mainView: {
     flex: 1,
+    borderWidth: 10,
+    borderRadius: 10,
     justifyContent: 'center',
-    backgroundColor: 'lightblue',
-  },
-  paragraph: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    textAlign: 'left',
+    backgroundColor: 'lightpink',
   },
   steerArea: {
-    height: 300,
-    width: 300,
+    height: 200,
+    width: 200,
     backgroundColor: 'lightgray',
-  },
-  steerWheel: {
-    height: 240,
-    width: 240,
-    borderRadius: 120,
-    borderWidth: 20,
-    top: 30,
-    left: 30,
-    borderColor: 'gray',
-  },
-  touchIndicator: {
-    height: 40,
-    width: 40,
-    borderRadius: 20,
-    backgroundColor: 'blue',
-    top: 0,
-    left: 130,
-  },
-  touchArea: {
-    height: 100,
-    width: 100,
-    borderWidth: 10,
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: 50,
   },
 });
